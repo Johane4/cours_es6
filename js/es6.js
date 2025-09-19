@@ -7,6 +7,10 @@ const fruits = ["pomme", "banane", "orange"];
 // Ici, chaque élément du tableau est assigné à une variable distincte
 const [fruit1, fruit2, fruit3] = fruits;
 
+// const fruit1 = fruits[0];
+// const fruit2 = fruits[1];
+// const fruit3 = fruits[2];
+
 // du coup pon aurait const fruits1 qui équivaut à const fruits1 = fruits[0]
 document.getElementById(
 	"destructuring-array",
@@ -80,14 +84,26 @@ document.getElementById(
 
 // EXO CONCRET
 // Étape 1 : Créer les objets personne et contact
+const personnes = {
+	nom10 : "Ahmed",
+	prenom : "Abir",
+	age : 10
+}
 
+const contact = {
+	numero : "+3305050505",
+	mail : "abir@prince.com"
+}
 
 // Étape 2 : Utiliser le spread operator pour fusionner les objets
+const coordonnees = { ...personnes, ...contact};
+console.log(coordonnees);
 
 // Étape 3 : Utiliser le destructuring pour extraire des propriétés spécifiques
-
+const { nom10, prenom, numero } = coordonnees;
 
 // Étape 4 : Afficher les propriétés extraites dans la console
+console.log(nom10, prenom, numero );
 
 /************************************* 3. Map() *****************************************/
 // La méthode map() applique une fonction à chaque élément d'un tableau et retourne un nouveau tableau
@@ -98,12 +114,13 @@ document.getElementById(
 
 // /************************************* 4. Reduce() *****************************************/
 // // La méthode reduce() combine tous les éléments d'un tableau en une seule valeur en appliquant une fonction
+
+
 const sommeTotale = nombres.reduce(
-	(accumulateur, nombre) => accumulateur + nombre,
-	0,
+	(accumulateur, nombre) => accumulateur + nombre, 0,
 );
 
-// const nombres = [1, 2, 3];
+
 // initiale 0 et actuelle 1
 // accumulateur c'est 0+1  donc 1 et le chiffre actuel c'est 2
 // accumulateur c'est 1 + 2 soit 3 et le chiffre actuel c'est 3
@@ -118,6 +135,8 @@ const ageTernaire = 16;
 // Si c'est VRAI  ?  ALORS INSTRUCTIONS    :    OU ALORS AUTRE INSTRUCTIONS
 const estMajeur = ageTernaire >= 18 ? "Oui" : "Non";
 
+
+
 // équivaut à faire ça
 // if (ageTernaire >= 18) {
 // 	document.getElementById("ternaire").innerHTML = `Est majeur: ${estMajeur}`;
@@ -125,6 +144,9 @@ const estMajeur = ageTernaire >= 18 ? "Oui" : "Non";
 // } else {
 // 	document.getElementById("ternaire").innerHTML = `N'est pas majeur: ${estMajeur}`;
 // }
+
+// const display = ageTernaire >= 18 ? 
+// document.getElementById("ternaire").innerHTML = `Est majeur: ${estMajeur}`: document.getElementById("ternaire").innerHTML = `Trop mineur le boug !!`;
 
 document.getElementById("ternaire").innerHTML = `Est majeur: ${estMajeur}`;
 
@@ -152,4 +174,35 @@ document.getElementById("shorthand").innerHTML = `Nouvel étudiant : ${
 
 /************************************* 7. Classes *****************************************/
 // Les classes en JavaScript sont un moyen de créer des objets avec des propriétés et des méthodes partagées
+
+class User {
+	// le constructeur construit les propriétés dont l'objet a besoin
+	constructor(firstname, lastname, age, address = "Gonesse") {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.age = age;
+		this.address = address;
+	}
+
+	introduce() {
+		return `Bonjour je m'appelle ${this.firstname} ${this.lastname}`;
+	}
+	
+	where() {
+		return `Je vis à ${this.address}`
+	}
+}
+
+// Ici on instancie notre objet pour créer un nouvel utilisateur
+const user = new User("Abir", "Ahmed", 10);
+console.log(user.where());
+console.log(user.age);
+
+
+const user1 = new User("Abigail", "Luxor", 8, "Rome");
+console.log(user1.introduce() + " et " + user1.where());
+console.log(user1.age);
+
+
+
 
